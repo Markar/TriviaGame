@@ -27,24 +27,22 @@ export const cardSlice = createSlice({
   },
   reducers: {    
     cardsReceived(state, action) {      
+      console.log('RECEIVED');
+      state.page++;
       state.cards = state.cards.concat(action.payload.cards);      
     },        
     filterCards(state, action) {      
       const fuse = new Fuse(state.cards, options);      
       state.filteredCards = fuse.search(action.payload);            
-    },
-    increasePage(state, action) {
-      state.page += 1;
     }
   },
 });
 
-export const { cardsReceived, filterCards, increasePage } = cardSlice.actions;
+export const { cardsReceived, filterCards } = cardSlice.actions;
 export const selectCards = state => state.card.cards;
 export const selectPage = state => state.card.page;
 
-export const fetchCards = (page) => async dispatch => {  
-  dispatch(increasePage);
+export const fetchCards = (page) => async dispatch => {    
   const response = await axios.get(`https://api.elderscrollslegends.io/v1/cards?pageSize=20&page=${page}`);
   dispatch(cardsReceived(response.data));  
 }

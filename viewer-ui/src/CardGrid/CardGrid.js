@@ -28,9 +28,9 @@ function CardGrid(props) {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectPage);  
 
-  function loadMore() {
-    dispatch(fetchCards(currentPage));
-  }
+  function loadMore() {       
+    dispatch(fetchCards(currentPage));    
+  }  
 
   return (
     <>

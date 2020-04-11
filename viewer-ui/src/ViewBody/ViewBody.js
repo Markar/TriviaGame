@@ -9,11 +9,12 @@ import {
 function ViewBody(props) {    
   const dispatch = useDispatch();      
 
-  useEffect(() => {
-    dispatch(fetchCards(currentPage));
-  }, []);
+  //No longer needed with infinite scroll
+  // useEffect(() => {
+  //   dispatch(fetchCards(currentPage));
+  // }, []);
 
-  const currentPage = useSelector(selectPage);  
+  //const currentPage = useSelector(selectPage);  
   const cards = useSelector(selectCards);  
 
   console.log('cards', cards);
