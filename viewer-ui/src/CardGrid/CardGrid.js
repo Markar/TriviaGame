@@ -6,10 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import ESCard from '../ESCard/ESCard';
 
 import {
-  selectPage, fetchCards
+  selectPage, fetchCards, selectFiltered
 } from '../cardSlice';
 
-function renderRows(cards) {
+function renderRows(cards, isFiltered) {  
   if (!cards) {
     return;
   }
@@ -17,21 +17,33 @@ function renderRows(cards) {
   return (
     cards.map((card, index) => (
       <Col key={index}>
-        <ESCard data={card} />
+        <ESCard data={isFiltered ? card.item : card} />
       </Col>
     ))
   );
 }
 
 function CardGrid(props) {  
-  const cardRows = renderRows(props.cards);
+  let cardRows;    
+
+  const filtered = useSelector(selectFiltered);  
+  if (filtered.length > 0) {
+    cardRows = renderRows(filtered, true);    
+  } else {
+    cardRows = renderRows(props.cards, false);    
+  }
+  
   const dispatch = useDispatch();
   const currentPage = useSelector(selectPage);  
 
   function loadMore() {       
-    dispatch(fetchCards(currentPage));    
+    if (filtered.length === 0) {
+      // We only want to load more results while the results are not currently filtered
+      // otherwise this will load very rapidly due to limited results. 
+      dispatch(fetchCards(currentPage));    
+    }    
   }  
-
+  
   return (
     <>
       <Container>

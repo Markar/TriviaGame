@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import CardGrid from '../CardGrid/CardGrid';
 
 import {  
-  filterCards, selectCards, selectPage, fetchCards
+  selectCards
 } from '../cardSlice';
 
 function ViewBody(props) {    
-  const dispatch = useDispatch();      
+  // const dispatch = useDispatch();      
 
   //No longer needed with infinite scroll
   // useEffect(() => {
