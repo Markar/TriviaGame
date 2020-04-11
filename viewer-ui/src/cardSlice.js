@@ -23,35 +23,38 @@ export const cardSlice = createSlice({
   initialState: {
     page: 1,
     cards: [],    
-    filteredCards: []
+    filteredCards: [],
+    isFetching: false
   },
   reducers: {    
+    loading(state, action) {
+      state.isFetching = true;
+    },
     cardsReceived(state, action) {     
       if (action.type === 'card/cardsReceived') {
         state.page++;
         state.cards = state.cards.concat(action.payload.cards);    
-        console.log('test', action);  
+        state.isFetching = false;
       }          
     },        
     filterCards(state, action) {      
       if (action.type === 'card/filterCards') {
-        const fuse = new Fuse(state.cards, options);              
-        // console.log('search', fuse.search(action.payload));
-        // console.log('test2', state.cards);        
+        const fuse = new Fuse(state.cards, options);                 
         state.filteredCards = fuse.search(action.payload);
-        console.log('filtered', state.filteredCards);
       }      
     }
   },
 });
 
-export const { cardsReceived, filterCards } = cardSlice.actions;
+export const { cardsReceived, filterCards, loading } = cardSlice.actions;
 export const selectCards = state => state.card.cards;
 export const selectFiltered = state => state.card.filteredCards;
 export const selectPage = state => state.card.page;
+export const isFetching = state => state.card.isFetching;
 
-export const fetchCards = (page) => async dispatch => {    
-  const response = await axios.get(`https://api.elderscrollslegends.io/v1/cards?pageSize=20&page=${page}`);
+export const fetchCards = (page, pageSize = 2) => async dispatch => {    
+  dispatch(loading);
+  const response = await axios.get(`https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}`);
   dispatch(cardsReceived(response.data));  
 }
 

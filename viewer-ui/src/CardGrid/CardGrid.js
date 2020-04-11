@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ESCard from '../ESCard/ESCard';
 
 import {
-  selectPage, fetchCards, selectFiltered
+  selectPage, fetchCards, selectFiltered, isFetching
 } from '../cardSlice';
 
 function renderRows(cards, isFiltered) {  
@@ -24,8 +24,8 @@ function renderRows(cards, isFiltered) {
 }
 
 function CardGrid(props) {  
-  let cardRows;    
-
+  let cardRows;      
+  const loading = useSelector(isFetching);  
   const filtered = useSelector(selectFiltered);  
   if (filtered.length > 0) {
     cardRows = renderRows(filtered, true);    
@@ -34,7 +34,7 @@ function CardGrid(props) {
   }
   
   const dispatch = useDispatch();
-  const currentPage = useSelector(selectPage);  
+  const currentPage = useSelector(selectPage);      
 
   function loadMore() {       
     if (filtered.length === 0) {
@@ -44,14 +44,24 @@ function CardGrid(props) {
     }    
   }  
   
+  if (loading) {
+    return (
+      <>
+        <div>Loading more results...</div>
+      </>
+    )
+  }
+  
+  const loader = (<div className="loader" key={0}>{'Loading more cards...'}</div>);
+
   return (
     <>
-      <Container>
+      <Container className="card-grid--position">        
         <InfiniteScroll
           pageStart={0}
           loadMore={loadMore}
           hasMore={true}
-          loader={<div className="loader" key={0}>Loading ...</div>}
+          loader={loader}
         >
           <Row className="card-grid--row">
             {cardRows}
