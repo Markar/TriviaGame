@@ -13,9 +13,9 @@ function ESCard(props) {
           <Card.Body>
             <Card.Title>{name}</Card.Title>
             <Card.Text>
-              <span className="card--text">{text}</span>
               <span className="card--set-name">{set.name}</span>
               <span className="card--type">{type}</span>
+              <span className="card--text">{text}</span>            
             </Card.Text>
           </Card.Body>
         </Card>
@@ -31,6 +31,8 @@ function ESCard(props) {
     );
   }
 
+  // Moved text to the bottom since the length varies more than the set and type
+  // Also lowered the font size to differentiate the description
   return (
     <>
       <Card className="elder-scrolls-card">

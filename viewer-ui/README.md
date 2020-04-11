@@ -31,3 +31,12 @@
     React-infinite-scroller
   </a>
 </div>
+
+
+<div> Things to do: </div>
+<div> Implement a testing framework and start adding unit tests </div>
+<div> Come up with better styling for the cards, maybe color-coded background </div>
+<div> Change the loading indicator to blank cards. I tried doing this, but ran into conflicts with infinite-scroll </div>
+<div> Refactor the state management (not super familiar with redux toolkit) </div>
+<div> Add a node server, push to web somewhere like Heroku</div>
+
