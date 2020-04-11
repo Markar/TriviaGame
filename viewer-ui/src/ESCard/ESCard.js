@@ -3,19 +3,26 @@ import './ESCard.scss';
 import Card from 'react-bootstrap/Card';
 
 function ESCard(props) {  
-  const { data } = props.data;
-  console.log('props', data);
+  const { imageUrl, name, text, set, type } = props.data;  
+
+  if (!props.data || !props.data.set) {
+    return (
+      <>
+        <div>Oops! An error occurred.</div>
+      </>
+    );
+  }
 
   return (
     <>
       <Card className="elder-scrolls-card">
-        <Card.Img variant="top" src={props.data.imageUrl} />
+        <Card.Img variant="top" src={imageUrl} />
         <Card.Body>
-          <Card.Title>{props.data.name}</Card.Title>
+          <Card.Title>{name}</Card.Title>
           <Card.Text>
-            <span className="card--text">{props.data.text}</span>
-            <span className="card--set-name">{props.data.set.name}</span>
-            <span className="card--type">{props.data.type}</span>
+            <span className="card--text">{text}</span>
+            <span className="card--set-name">{set.name}</span>
+            <span className="card--type">{type}</span>
           </Card.Text>
         </Card.Body>
       </Card>
