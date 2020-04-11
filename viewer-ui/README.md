@@ -1,4 +1,5 @@
-<div> git clone https://github.com/Markar/ElderScrollsCardViewer/tree/master/viewer-ui </div>
+<div> git clone https://github.com/Markar/ElderScrollsCardViewer.git </div>
+<div> cd ElderScrollsCardViewer/viewer-ui </div>
 <div> npm install </div>
 <div> npm start </div>
 
