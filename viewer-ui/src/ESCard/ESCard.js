@@ -38,9 +38,9 @@ function ESCard(props) {
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Text>
-            <span className="card--text">{text}</span>
             <span className="card--set-name">{set.name}</span>
             <span className="card--type">{type}</span>
+            <span className="card--text">{text}</span>            
           </Card.Text>
         </Card.Body>
       </Card>
