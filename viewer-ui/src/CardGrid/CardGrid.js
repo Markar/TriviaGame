@@ -61,7 +61,7 @@ function CardGrid(props) {
           pageStart={0}
           loadMore={loadMore}
           hasMore={true}
-          loader={loader}
+          loader={filtered.length > 0 ? '' : loader}
         >
           <Row className="card-grid--row">
             {cardRows}
