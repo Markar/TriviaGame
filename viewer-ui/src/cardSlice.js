@@ -52,7 +52,7 @@ export const selectFiltered = state => state.card.filteredCards;
 export const selectPage = state => state.card.page;
 export const isFetching = state => state.card.isFetching;
 
-export const fetchCards = (page, pageSize = 2) => async dispatch => {    
+export const fetchCards = (page, pageSize = 20) => async dispatch => {    
   dispatch(loading);
   const response = await axios.get(`https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}`);
   dispatch(cardsReceived(response.data));  
