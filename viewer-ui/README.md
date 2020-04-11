@@ -1,6 +1,6 @@
 <div> git clone https://github.com/Markar/ElderScrollsCardViewer/tree/master/viewer-ui </div>
 <div> npm install </div>
-<div> yarn start </div>
+<div> npm start </div>
 
 <div> 
   <a href="https://fusejs.io/">
