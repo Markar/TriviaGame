@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import CardGrid from './CardGrid/CardGrid';
+import ESHeader from './ESHeader/ESHeader';
 import cards from './cards.json';
 
 function App() {
@@ -32,7 +33,8 @@ function App() {
 
   console.log('cardData in app', cardData);
   return (
-    <div className="App">      
+    <div className="App">
+      <ESHeader />
       <CardGrid cards={cards.cards} />
     </div>
   );

@@ -15,7 +15,7 @@ function renderRows(cards) {
 }
 
 function CardGrid(props) {    
-  console.log('props', props.cards);
+  
   
   const cardRows = renderRows(props.cards);
   return (

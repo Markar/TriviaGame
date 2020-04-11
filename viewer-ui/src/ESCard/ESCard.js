@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 
 function ESCard(props) {  
   const { data } = props.data;
-  console.log('props', props.data);
+  console.log('props', data);
 
   return (
     <>
@@ -13,9 +13,9 @@ function ESCard(props) {
         <Card.Body>
           <Card.Title>{props.data.name}</Card.Title>
           <Card.Text>
-            <div className="card--text">{props.data.text}</div>
-            <div className="card--set-name">{props.data.set.name}</div>            
-            <div className="card--type">{props.data.type}</div>
+            <span className="card--text">{props.data.text}</span>
+            <span className="card--set-name">{props.data.set.name}</span>
+            <span className="card--type">{props.data.type}</span>
           </Card.Text>
         </Card.Body>
       </Card>

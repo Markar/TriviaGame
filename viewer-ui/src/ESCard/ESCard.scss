@@ -1,17 +1,31 @@
 .elder-scrolls-card {
-  width: 200px;
+  width: 330px;
+  height: 800px;
   text-align: left;
-  margin-bottom: 25px;
+  margin-bottom: 25px;  
+
+  @media screen and (min-width: 375px) {
+    width: 280px;
+    height: 650px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    width: 330px;
+    height: 800px;
+  }
 
   .card--text {
     margin-top: 10px;
+    display: block;
   }
 
   .card--set-name {
     margin-top: 10px;
+    display: block;
   }
 
   .card--type {
     margin-top: 10px;
+    display: block;
   }
 }
