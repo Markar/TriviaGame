@@ -45,6 +45,7 @@ function CardGrid(props) {
   }  
   
   if (loading) {
+    // This is where the "blank" loading cards would be added, or any other style of loading indicator.
     return (
       <>
         <div>Loading more results...</div>

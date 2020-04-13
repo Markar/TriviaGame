@@ -19,8 +19,7 @@ function ESHeader(props) {
         <Navbar.Brand href="">Elder Scrolls Card Viewer</Navbar.Brand>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={handleChange}/>
-        </Form>
-        {/* <input type="text" placeholder="Search by name" className="mr-sm-2" onChange={handleChange} />         */}
+        </Form>        
       </Navbar>
     </>
   );

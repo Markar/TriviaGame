@@ -28,6 +28,7 @@ export const cardSlice = createSlice({
   },
   reducers: {    
     loading(state, action) {
+      // This bit allows us to display the loading indicator while waiting for the API response.
       state.isFetching = true;
     },
     cardsReceived(state, action) {     
@@ -52,7 +53,8 @@ export const selectFiltered = state => state.card.filteredCards;
 export const selectPage = state => state.card.page;
 export const isFetching = state => state.card.isFetching;
 
-export const fetchCards = (page, pageSize = 20) => async dispatch => {    
+// Default the page size to 20 in params, but either can be passed in via the function
+export const fetchCards = (page, pageSize = 20) => async dispatch => {      
   dispatch(loading);
   const response = await axios.get(`https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}`);
   dispatch(cardsReceived(response.data));  

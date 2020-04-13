@@ -6,6 +6,8 @@ function ESCard(props) {
   const { imageUrl, name, text, set, type, blank } = props.data;
   
   if (blank) {
+    // This is currently unused because it causes the infinite scroller to load too quickly.
+    // Ideally, this would load enough blank cards to fill out the next row until they are finished loading.
     return (
       <>
         <Card className="elder-scrolls-card">

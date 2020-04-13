@@ -9,7 +9,7 @@ import {
 function ViewBody(props) {    
   // const dispatch = useDispatch();      
 
-  //No longer needed with infinite scroll
+  //No longer needed with infinite scroll, but originally this loaded the first 20 results.
   // useEffect(() => {
   //   dispatch(fetchCards(currentPage));
   // }, []);
