@@ -8,8 +8,13 @@ function JoinSection(props) {
   const [gameId, setGameId] = useState(0);  
   const handleChange = e => setGameId(e.target.value);
 
-  function handleJoin(e) {    
-    dispatch(props.joinGame(gameId));
+  function handleJoin(e) {  
+    let player = {
+      gameId: gameId,
+      playerName: props.playerName
+    };
+
+    dispatch(props.joinGame(player));
   }
 
   return (    

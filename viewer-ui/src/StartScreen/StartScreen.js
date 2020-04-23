@@ -3,7 +3,6 @@ import { Container, Row, Button, Form } from 'react-bootstrap';
 import './StartScreen.scss';
 import CreateSection from './CreateSection';
 import JoinSection from './JoinSection';
-import { useDispatch } from 'react-redux';
 
 class StartScreen extends React.Component {
 
@@ -11,14 +10,21 @@ class StartScreen extends React.Component {
     super(props);
 
     this.state = {
-      name: 'test name'
+      playerName: ''
     };
-  }  
+    
+  }
 
+  handleNameChange = (e) => {
+    this.setState({
+      playerName: e.target.value
+    });
+  }
+  
   render() {
-    const { games, createGame } = this.props;    
+    const { games, createGame, joinGame } = this.props;
 
-    console.log('props', this.props);
+    console.log('props', this.props);    
     return (
       <React.Fragment>
         <Container fluid>
@@ -26,15 +32,15 @@ class StartScreen extends React.Component {
             <Form>
               <Form.Group controlId="formPlayer">
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Player" />
+                <Form.Control type="text" placeholder="Player" onChange={this.handleNameChange}/>
               </Form.Group>
-              <div>                
-                <JoinSection games={games} joinGame={this.props.joinGame}/>
+              <div>
+                <JoinSection games={games} joinGame={joinGame} playerName={this.state.playerName} />
               </div>
-              
+
               <div className="createBtn--margin">
-                <CreateSection name={this.state.name} createGame={this.props.createGame}/>
-              </div>              
+                <CreateSection name={this.state.name} createGame={createGame} playerName={this.state.playerName} />
+              </div>
             </Form>
           </Row>
         </Container>

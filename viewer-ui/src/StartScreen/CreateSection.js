@@ -9,11 +9,12 @@ function CreateSection(props) {
   const onChange = e => setGameName(e.target.value);
 
   function handleCreateClick(e) {
-    let game = {
-      name: gameName
-    };
+    let player = {
+      gameName: gameName,
+      playerName: props.playerName
+    };    
   
-    dispatch(props.createGame(game));
+    dispatch(props.createGame(player));
   }  
 
   return (

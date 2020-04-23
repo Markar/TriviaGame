@@ -9,10 +9,12 @@ export const gameSlice = createSlice({
       {
         id: -1, 
         name: `Wayne's World`,
+        players: []
       },
       {
         id: -2, 
         name: `Garth's World`,
+        players: []
       }
     ],        
     isFetching: false
@@ -35,6 +37,23 @@ export const gameSlice = createSlice({
     joinGame(state, action) {
       if (action.type === 'game/joinGame') {        
         console.log('join game action', action.payload);
+        let player = action.payload;
+        if (!player.playerName) {
+          player.playerName = 'Player';
+        }
+
+        let games = state.games;        
+        for (let i = 0; i < games.length; i++) {
+          // find the right game by id
+          let game = games[i];
+          console.log('gameid', game.id);
+          console.log('player game id', player.gameId);
+          if (+game.id === +player.gameId) {
+            // add the player to the game's array of player objects so we can track their stats
+            console.log('push player', game);
+            game.players.push(player);            
+          }
+        }
       }
     },
     cardsReceived(state, action) {     
