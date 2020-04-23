@@ -1,0 +1,26 @@
+{  
+  "1": {      
+    "question": "What species is Guinan from The Next Generation?",
+    "a": "Twi-lek",
+    "b": "Ferengi",
+    "c": "El-Aurian",
+    "d": "Android",
+    "answer": "c"
+  },
+  "2": {      
+    "question": "What species is Quark from Deep Space Nine?",
+    "a": "Ferengi",
+    "b": "Twi-lek",
+    "c": "El-Aurian",
+    "d": "Android",
+    "answer": "c"
+  },
+  "3": {      
+    "question": "Which show is Captain Janeway from?",
+    "a": "Next Generation",
+    "b": "Breaking Bad",
+    "c": "Voyager",
+    "d": "Deep Space Nine",
+    "answer": "c"
+  }  
+}
