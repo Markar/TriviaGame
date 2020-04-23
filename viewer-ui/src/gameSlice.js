@@ -1,35 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import Fuse from 'fuse.js';
 
-const options = {
-  isCaseSensitive: false,
-  findAllMatches: false,
-  includeMatches: false,
-  includeScore: false,
-  useExtendedSearch: false,
-  minMatchCharLength: 1,
-  shouldSort: true,
-  threshold: 0.5,
-  location: 0,
-  distance: 100,
-  keys: [
-    "name"
-  ]
-};
-
-export const cardSlice = createSlice({
-  name: 'card',
+export const gameSlice = createSlice({
+  name: 'game',
   initialState: {
     page: 1,
-    cards: [],    
-    filteredCards: [],
+    games: [
+      {
+        id: 1, 
+        name: `Wayne's World`,
+      },
+      {
+        id: 2, 
+        name: `Garth's World`,
+      }
+    ],        
     isFetching: false
   },
   reducers: {    
     loading(state, action) {
       // This bit allows us to display the loading indicator while waiting for the API response.
       state.isFetching = true;
+    },
+    createGame(state, action) {
+      if (action.type === 'card/createGame') {
+        state.games.push(action.payload.game);
+      }
     },
     cardsReceived(state, action) {     
       if (action.type === 'card/cardsReceived') {
@@ -40,18 +36,24 @@ export const cardSlice = createSlice({
     },        
     filterCards(state, action) {      
       if (action.type === 'card/filterCards') {
-        const fuse = new Fuse(state.cards, options);                 
-        state.filteredCards = fuse.search(action.payload);
+        // const fuse = new Fuse(state.cards, options);                 
+        // state.filteredCards = fuse.search(action.payload);
       }      
     }
   },
 });
 
-export const { cardsReceived, filterCards, loading } = cardSlice.actions;
-export const selectCards = state => state.card.cards;
-export const selectFiltered = state => state.card.filteredCards;
-export const selectPage = state => state.card.page;
+export const { cardsReceived, filterCards, loading } = gameSlice.actions;
+export const selectGames = state => state.game.games;
+// export const selectFiltered = state => state.card.filteredCards;
+// export const selectPage = state => state.card.page;
 export const isFetching = state => state.card.isFetching;
+
+export const createGame = (game = null) => dispatch => {
+  if (game) {
+    dispatch(createGame(game));    
+  }  
+}
 
 // Default the page size to 20 in params, but either can be passed in via the function
 export const fetchCards = (page, pageSize = 20) => async dispatch => {      
@@ -60,4 +62,4 @@ export const fetchCards = (page, pageSize = 20) => async dispatch => {
   dispatch(cardsReceived(response.data));  
 }
 
-export default cardSlice.reducer;
+export default gameSlice.reducer;

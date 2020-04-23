@@ -1,13 +1,12 @@
 import React from 'react';
 import './CardGrid.scss';
 import { Container, Row, Col } from 'react-bootstrap';
-import InfiniteScroll from 'react-infinite-scroller';
 import { useSelector, useDispatch } from 'react-redux';
-import ESCard from '../ESCard/ESCard';
+// import ESCard from '../ESCard/ESCard';
 
 import {
   selectPage, fetchCards, selectFiltered, isFetching
-} from '../cardSlice';
+} from '../gameSlice';
 
 function renderRows(cards, isFiltered) {  
   if (!cards) {
@@ -57,18 +56,10 @@ function CardGrid(props) {
 
   return (
     <>
-      <Container className="card-grid--position">        
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={loadMore}
-          hasMore={true}
-          loader={filtered.length > 0 ? '' : loader}
-        >
-          <Row className="card-grid--row">
-            {cardRows}
-          </Row>
-        </InfiniteScroll>
-
+      <Container className="card-grid--position">                
+        <Row className="card-grid--row">
+          {cardRows}
+        </Row>        
       </Container>
     </>
   );

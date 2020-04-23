@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.scss';
-import ESHeader from './ESHeader/ESHeader';
+import Header from './Header/Header';
 import ViewBody from './ViewBody/ViewBody';
 
 function App() {
   return (
     <div className="App">
-        <ESHeader />  
+        <Header />  
         <ViewBody />     
     </div>
   );

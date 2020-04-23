@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cardReducer from '../cardSlice';
+import gameReducer from '../gameSlice';
 
 export default configureStore({
   reducer: {    
-    card: cardReducer
+    game: gameReducer
   },
 });
