@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import StartScreen from '../StartScreen/StartScreen';
 
 import {  
-  selectGames, createGame
+  selectGames, createGame, joinGame
 } from '../gameSlice';
 
 function ViewBody(props) {    
@@ -18,7 +18,7 @@ function ViewBody(props) {
 
   return (
     <>     
-      <StartScreen games={games} createGame={createGame} />
+      <StartScreen games={games} createGame={createGame} joinGame={joinGame} />
     </>
   );
 }

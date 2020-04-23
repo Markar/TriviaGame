@@ -4,14 +4,14 @@ import axios from 'axios';
 export const gameSlice = createSlice({
   name: 'game',
   initialState: {
-    page: 1,
+    id: 1,
     games: [
       {
-        id: 1, 
+        id: -1, 
         name: `Wayne's World`,
       },
       {
-        id: 2, 
+        id: -2, 
         name: `Garth's World`,
       }
     ],        
@@ -22,9 +22,19 @@ export const gameSlice = createSlice({
       // This bit allows us to display the loading indicator while waiting for the API response.
       state.isFetching = true;
     },
-    createGame(state, action) {
-      if (action.type === 'card/createGame') {
-        state.games.push(action.payload.game);
+    createGame(state, action) {      
+      // this should probably check the games object for unique names
+      if (action.type === 'game/createGame') {        
+        state.id++;
+
+        let game = action.payload;
+        game.id = state.id;        
+        state.games.push(game);
+      }
+    },
+    joinGame(state, action) {
+      if (action.type === 'game/joinGame') {        
+        console.log('join game action', action.payload);
       }
     },
     cardsReceived(state, action) {     
@@ -43,17 +53,18 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { cardsReceived, filterCards, loading } = gameSlice.actions;
+export const { cardsReceived, filterCards, loading, createGame, joinGame } = gameSlice.actions;
 export const selectGames = state => state.game.games;
 // export const selectFiltered = state => state.card.filteredCards;
 // export const selectPage = state => state.card.page;
 export const isFetching = state => state.card.isFetching;
 
-export const createGame = (game = null) => dispatch => {
-  if (game) {
-    dispatch(createGame(game));    
-  }  
-}
+// export const createNewGame = (game = null) => {
+//   console.log('in createGame action', game);
+//   if (game) {
+//     store.dispatch(createGame(game));    
+//   }  
+// }
 
 // Default the page size to 20 in params, but either can be passed in via the function
 export const fetchCards = (page, pageSize = 20) => async dispatch => {      

@@ -6,10 +6,7 @@ function Header() {
   return (
     <>
       <Navbar className = "justify-content-between" bg="dark" variant="dark" sticky="top">
-        <Navbar.Brand href="">HQ Trivia</Navbar.Brand>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
-        </Form>        
+        <Navbar.Brand href="">HQ Trivia</Navbar.Brand>   
       </Navbar>
     </>
   );
