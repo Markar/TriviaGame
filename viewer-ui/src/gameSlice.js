@@ -11,7 +11,7 @@ export const gameSlice = createSlice({
     // 1 is the question screen
     // 2 is the end of round score screen
     // 3 is the score screen
-    page: 2,
+    page: 0,
 
     games: [
       {
@@ -125,6 +125,15 @@ export const gameSlice = createSlice({
       // This bit allows us to display the loading indicator while waiting for the API response.
       state.isFetching = true;
     },    
+    nextPage(state, action) {
+      if (action.type === 'game/nextPage') {        
+        // this is just to be used for debugging the UI
+        state.page++;
+        if (state.page > 3) {
+          state.page = 0
+        }      
+      }      
+    },
     createGame(state, action) {
       // this should probably check the games object for unique names
       if (action.type === 'game/createGame') {
@@ -204,21 +213,12 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { cardsReceived, filterCards, loading, createGame, joinGame, answerQuestion } = gameSlice.actions;
+export const { cardsReceived, filterCards, loading, createGame, joinGame, answerQuestion, nextPage } = gameSlice.actions;
 export const selectPage = state => state.game.page;
 export const selectGames = state => state.game.games;
 export const selectGameCount = state => state.game.gameCount;
 export const selectPlayerCount = state => state.game.playerCount;
 export const selectQuestions = state => state.game.questions;
 export const isFetching = state => state.card.isFetching;
-
-
-
-// Default the page size to 20 in params, but either can be passed in via the function
-// export const fetchCards = (page, pageSize = 20) => async dispatch => {
-//   dispatch(loading);
-//   const response = await axios.get(`https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}`);
-//   dispatch(cardsReceived(response.data));
-// }
 
 export default gameSlice.reducer;
