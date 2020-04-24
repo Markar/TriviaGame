@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import StartScreen from '../StartScreen/StartScreen';
 import QuestionScreen from '../QuestionScreen/QuestionScreen';
+import RoundScoreScreen from '../RoundScoreScreen/RoundScoreScreen';
 import ScoreScreen from '../ScoreScreen/ScoreScreen';
 
 import {  
@@ -23,6 +24,7 @@ function ViewBody(props) {
     <>     
       <StartScreen games={games} createGame={createGame} joinGame={joinGame} page={page} />
       <QuestionScreen playerId={0} gameId={0} playerName={"Mark"} page={page} />
+      <RoundScoreScreen playerId={0} gameId={0} playerName={"Mark"} page={page} />
       <ScoreScreen playerId={0} gameId={0} playerName={"Mark"} page={page} />
       {/* gameId: 0,
       playerId: 0,

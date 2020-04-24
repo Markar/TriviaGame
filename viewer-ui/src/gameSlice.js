@@ -9,7 +9,8 @@ export const gameSlice = createSlice({
     playerCount: 0, // used for new player ids
     // 0 is the start screen
     // 1 is the question screen
-    // 2 is the score screen
+    // 2 is the end of round score screen
+    // 3 is the score screen
     page: 2,
 
     games: [
@@ -31,7 +32,7 @@ export const gameSlice = createSlice({
             gameId: 0,            
             playerName: 'Riker',
             questionId: 0,
-            answer: '',
+            answer: 'a',
             score: 3,
             eliminated: false
           },
@@ -40,7 +41,7 @@ export const gameSlice = createSlice({
             gameId: 0,            
             playerName: 'La Forge',
             questionId: 0,
-            answer: '',
+            answer: 'b',
             score: 5,
             eliminated: false
           },
@@ -49,8 +50,17 @@ export const gameSlice = createSlice({
             gameId: 0,            
             playerName: 'Worf',
             questionId: 0,
-            answer: '',
+            answer: 'c',
             score: 5,
+            eliminated: false
+          },
+          {
+            id: 4,
+            gameId: 0,            
+            playerName: 'Dorf',
+            questionId: 0,
+            answer: 'd',
+            score: 6,
             eliminated: false
           },
         ]

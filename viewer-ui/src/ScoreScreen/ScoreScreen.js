@@ -10,8 +10,8 @@ import {
 function ScoreScreen(props) {
   const dispatch = useDispatch();  
   const questions = useSelector(selectQuestions);  
-  const games = useSelector(selectGames);    
-  const time = 5;
+  const games = useSelector(selectGames);      
+  let players = games[0].players;
 
   function renderRows(players) {
     //sort players in descending order
@@ -27,6 +27,7 @@ function ScoreScreen(props) {
         <>
         <Row className={winner}>
           <Col>{player.playerName}</Col>        
+          <Col>{player.answer}</Col>
           <Col>{player.score}</Col>
         </Row>
         </>
@@ -34,17 +35,13 @@ function ScoreScreen(props) {
     });    
   }
   
-  if (props.page === 2) {
-    console.log('props page', games);
-    let players = games[0].players;    
+  if (props.page === 3) {
+    console.log('props page', games);    
 
     return (
       <>        
         <Container fluid>
-          <h1>{'Top Scores'}</h1>
-          <h3 className='score--footer'>
-            Moving to the next round in {time} seconds.
-          </h3>
+          <h1>{'Top Scores'}</h1>          
           {renderRows(players)}                             
         </Container>
       </>
