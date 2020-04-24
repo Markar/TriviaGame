@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button, Form } from 'react-bootstrap';
+import { Container, Row, Form } from 'react-bootstrap';
 import './StartScreen.scss';
 import CreateSection from './CreateSection';
 import JoinSection from './JoinSection';
@@ -22,30 +22,40 @@ class StartScreen extends React.Component {
   }
   
   render() {
-    const { games, createGame, joinGame } = this.props;
+    const { games, createGame, joinGame, page } = this.props;    
 
-    console.log('props', this.props);    
-    return (
-      <React.Fragment>
-        <Container fluid>
-          <Row className="justify-content-md-center">
-            <Form>
-              <Form.Group controlId="formPlayer">
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Player" onChange={this.handleNameChange}/>
-              </Form.Group>
-              <div>
-                <JoinSection games={games} joinGame={joinGame} playerName={this.state.playerName} />
-              </div>
-
-              <div className="createBtn--margin">
-                <CreateSection name={this.state.name} createGame={createGame} playerName={this.state.playerName} />
-              </div>
-            </Form>
-          </Row>
-        </Container>
-      </React.Fragment>
-    );
+    if (page === 0) {
+      return (
+        <React.Fragment>
+          <Container fluid>
+            <Row className="justify-content-md-center">
+              <Form>
+                <Form.Group controlId="formPlayer">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control type="text" placeholder="Player" onChange={this.handleNameChange}/>
+                </Form.Group>              
+                
+                <JoinSection 
+                  games={games} 
+                  joinGame={joinGame} 
+                  playerName={this.state.playerName} 
+                />                            
+                
+                <div className="create-section--margin">
+                  <CreateSection                   
+                    name={this.state.name} 
+                    createGame={createGame} 
+                    playerName={this.state.playerName} 
+                  />              
+                </div>              
+              </Form>
+            </Row>
+          </Container>
+        </React.Fragment>
+      );
+    } else {
+      return (<div></div>);
+    }  
   }
 }
 

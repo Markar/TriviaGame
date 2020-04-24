@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './QuestionScreen.scss';
 
 import {  
-  selectGames, selectQuestions, answerQuestion
+  selectQuestions, answerQuestion
 } from '../gameSlice';
 
 function QuestionScreen(props) {
@@ -30,7 +30,7 @@ function QuestionScreen(props) {
         gameId: props.gameId,
         playerName: props.playerName,
         questionId: questions[0].id,
-        answer: 'c'
+        answer: answer
       };
 
       dispatch(answerQuestion(player));
@@ -50,33 +50,44 @@ function QuestionScreen(props) {
       </Button>
     );
   }
+  
+  if (props.page === 1) {
+    console.log('props page', props.page);
+    return (
+      <>
+        <h2>{currentQuestion.question}</h2>
+        <Container fluid>
+          <Form>
+            <Row>
+              <Col>
+                {renderButton(currentQuestion, 'a')}
+              </Col>
+              <Col>
+                {renderButton(currentQuestion, 'b')}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+              {renderButton(currentQuestion, 'c')}
+              </Col>
+              <Col>
+              {renderButton(currentQuestion, 'd')}
+              </Col>
+            </Row>
+            <Button onClick={handleSubmit}>Submit</Button>
+          </Form>
+        </Container>
+      </>
+    );
+  } else {
+    return (
+      <div>
 
-  return (
-    <>
-      <h2>{currentQuestion.question}</h2>
-      <Container fluid>
-        <Form>
-          <Row>
-            <Col>
-              {renderButton(currentQuestion, 'a')}
-            </Col>
-            <Col>
-              {renderButton(currentQuestion, 'b')}
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-            {renderButton(currentQuestion, 'c')}
-            </Col>
-            <Col>
-            {renderButton(currentQuestion, 'd')}
-            </Col>
-          </Row>
-          <Button onClick={handleSubmit}>Submit</Button>
-        </Form>
-      </Container>
-    </>
-  );
+      </div>
+    )
+
+  }
+  
 }
 
 

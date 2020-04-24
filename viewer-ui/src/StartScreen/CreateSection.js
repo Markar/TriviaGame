@@ -3,18 +3,31 @@ import { Form, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
 function CreateSection(props) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
 
   const [gameName, setGameName] = useState('');
+  const [gameId, setGameId] = useState(0);
   const onChange = e => setGameName(e.target.value);
 
-  function handleCreateClick(e) {
+  function handleCreateClick(e) {    
+    console.log('props', props);
     let player = {
-      gameName: gameName,
-      playerName: props.playerName
+      id: 0,
+      gameId: 0,            
+      playerName: props.playerName,
+      questionId: 0,
+      answer: '',
+      score: 0,
+      eliminated: false
+    };
+
+    let game = {
+      id: gameId, 
+      name: gameName,      
+      players: [player]      
     };    
   
-    dispatch(props.createGame(player));
+    dispatch(props.createGame(game));    
   }  
 
   return (
@@ -25,7 +38,7 @@ function CreateSection(props) {
       </Form.Group>
       <Button variant="primary" onClick={handleCreateClick}>
         Create
-        </Button>
+      </Button>
     </>
   );
 }

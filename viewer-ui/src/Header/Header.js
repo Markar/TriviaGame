@@ -1,12 +1,15 @@
 import React from 'react';
 import './Header.scss';
-import { Navbar, Form, FormControl } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
+import { Link } from "@reach/router";
 
 function Header() {           
   return (
     <>
       <Navbar className = "justify-content-between" bg="dark" variant="dark" sticky="top">
-        <Navbar.Brand href="">HQ Trivia</Navbar.Brand>   
+        <Link to="/">
+          <Navbar.Brand href="">HQ Trivia</Navbar.Brand>   
+        </Link>        
       </Navbar>
     </>
   );

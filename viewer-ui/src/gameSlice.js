@@ -1,9 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const gameSlice = createSlice({
-  name: 'game',
+  name: 'game',    
+
   initialState: {
     id: 1,
+    gameCount: 0, // used for new game ids
+    playerCount: 0, // used for new player ids
+    // 0 is the start screen
+    // 1 is the question screen
+    // 2 is the score screen
+    page: 2,
+
     games: [
       {
         id: 0,
@@ -12,12 +20,39 @@ export const gameSlice = createSlice({
           {
             id: 0,
             gameId: 0,            
-            playerName: 'Player',
+            playerName: 'Picard',
             questionId: 0,
             answer: '',
-            score: 0,
+            score: 4,
             eliminated: false
-          }
+          },
+          {
+            id: 1,
+            gameId: 0,            
+            playerName: 'Riker',
+            questionId: 0,
+            answer: '',
+            score: 3,
+            eliminated: false
+          },
+          {
+            id: 2,
+            gameId: 0,            
+            playerName: 'La Forge',
+            questionId: 0,
+            answer: '',
+            score: 5,
+            eliminated: false
+          },
+          {
+            id: 3,
+            gameId: 0,            
+            playerName: 'Worf',
+            questionId: 0,
+            answer: '',
+            score: 5,
+            eliminated: false
+          },
         ]
       },
       {
@@ -43,15 +78,33 @@ export const gameSlice = createSlice({
         b: "Twi-lek",
         c: "El-Aurian",
         d: "Android",
-        answer: "c"
+        answer: "a"
       },
       {
         id: 2,
         question: "Which show is Captain Janeway from?",
         a: "Next Generation",
         b: "Breaking Bad",
-        c: "Voyager",
-        d: "Deep Space Nine",
+        c: "Deep Space Nine",
+        d: "Voyager",
+        answer: "d"
+      },
+      {
+        id: 3,
+        question: "What is the actor who portays Captain Kirk's name?",
+        a: "William Shatner",
+        b: "William Shakespeare",
+        c: "William Windsor",
+        d: "James Kirk",
+        answer: "a"
+      },
+      {
+        id: 3,
+        question: "Which choice is an alien from Star Trek?",
+        a: "Furby",
+        b: "Pokemon",
+        c: "Tribble",
+        d: "Wookie",
         answer: "c"
       }
     ],
@@ -61,7 +114,7 @@ export const gameSlice = createSlice({
     loading(state, action) {
       // This bit allows us to display the loading indicator while waiting for the API response.
       state.isFetching = true;
-    },
+    },    
     createGame(state, action) {
       // this should probably check the games object for unique names
       if (action.type === 'game/createGame') {
@@ -70,6 +123,8 @@ export const gameSlice = createSlice({
         let game = action.payload;
         game.id = state.id;
         state.games.push(game);
+        console.log('create game');
+        state.page++;
       }
     },
     joinGame(state, action) {
@@ -115,6 +170,7 @@ export const gameSlice = createSlice({
                   gamePlayer.eliminated = true;
                 }
               }
+              state.page++;
             })
 
           }
@@ -139,24 +195,20 @@ export const gameSlice = createSlice({
 });
 
 export const { cardsReceived, filterCards, loading, createGame, joinGame, answerQuestion } = gameSlice.actions;
+export const selectPage = state => state.game.page;
 export const selectGames = state => state.game.games;
+export const selectGameCount = state => state.game.gameCount;
+export const selectPlayerCount = state => state.game.playerCount;
 export const selectQuestions = state => state.game.questions;
-// export const selectFiltered = state => state.card.filteredCards;
-// export const selectPage = state => state.card.page;
 export const isFetching = state => state.card.isFetching;
 
-// export const createNewGame = (game = null) => {
-//   console.log('in createGame action', game);
-//   if (game) {
-//     store.dispatch(createGame(game));    
-//   }  
-// }
+
 
 // Default the page size to 20 in params, but either can be passed in via the function
-export const fetchCards = (page, pageSize = 20) => async dispatch => {
-  dispatch(loading);
-  const response = await axios.get(`https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}`);
-  dispatch(cardsReceived(response.data));
-}
+// export const fetchCards = (page, pageSize = 20) => async dispatch => {
+//   dispatch(loading);
+//   const response = await axios.get(`https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}`);
+//   dispatch(cardsReceived(response.data));
+// }
 
 export default gameSlice.reducer;

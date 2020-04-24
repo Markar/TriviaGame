@@ -1,6 +1,6 @@
 {
-  "short_name": "Card Viewer",
-  "name": "Elder Scrolls Viewer",
+  "short_name": "Trivia",
+  "name": "HQ Trivia",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
