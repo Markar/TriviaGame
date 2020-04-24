@@ -57,7 +57,7 @@ export const gameSlice = createSlice({
           {
             id: 4,
             gameId: 0,            
-            playerName: 'Dorf',
+            playerName: 'Troi',
             questionId: 0,
             answer: 'd',
             score: 6,
@@ -74,7 +74,7 @@ export const gameSlice = createSlice({
     questions: [
       {
         id: 0,
-        question: "What species is Guinan from The Next Generation?",
+        question: "What species is Guinan?",
         a: "Twi-lek",
         b: "Ferengi",
         c: "El-Aurian",
@@ -83,7 +83,7 @@ export const gameSlice = createSlice({
       },
       {
         id: 1,
-        question: "What species is Quark from Deep Space Nine?",
+        question: "What species is Quark?",
         a: "Ferengi",
         b: "Twi-lek",
         c: "El-Aurian",
