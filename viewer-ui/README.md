@@ -23,6 +23,12 @@
 
 <div> 
   <a href="https://github.com/reach/router">
-    React-router for routing
+    Reach router for routing
+  </a>
+</div>
+
+<div> 
+  <a href="https://redux-toolkit.js.org/">
+    React-redux with Redux Toolkit for state management
   </a>
 </div>
