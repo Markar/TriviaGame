@@ -51,8 +51,7 @@ function QuestionScreen(props) {
     );
   }
   
-  if (props.page === 1) {
-    console.log('props page', props.page);
+  if (props.page === 1) {    
     return (
       <>
         <h2>{currentQuestion.question}</h2>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import StartScreen from '../StartScreen/StartScreen';
 import QuestionScreen from '../QuestionScreen/QuestionScreen';
 import RoundScoreScreen from '../RoundScoreScreen/RoundScoreScreen';
@@ -36,4 +36,11 @@ function ViewBody(props) {
   );
 }
 
-export default ViewBody;
+const mapStateToProps = ({games}) => ({
+  games
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(ViewBody)

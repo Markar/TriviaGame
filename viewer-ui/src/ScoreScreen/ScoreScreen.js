@@ -10,8 +10,7 @@ import {
 function ScoreScreen(props) {
   const dispatch = useDispatch();  
   const questions = useSelector(selectQuestions);  
-  const games = useSelector(selectGames);      
-  let players = games[0].players;
+  const games = useSelector(selectGames);        
 
   function renderRows(players) {
     //sort players in descending order
@@ -35,8 +34,8 @@ function ScoreScreen(props) {
     });    
   }
   
-  if (props.page === 3) {
-    console.log('props page', games);    
+  if (props.page === 3) {    
+    let players = games[0].players;
 
     return (
       <>        
